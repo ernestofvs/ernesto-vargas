@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portafolio — Ernesto Vargas · Performance Marketing</title>
+<link rel="icon" type="image/jpeg" href="http://asesoriadigitalpro.com/wp-content/uploads/2026/09/logo-verde.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --fondo: #0A0D0F; --card: #131820; --card2: #161C25;
+  --borde: rgba(255,255,255,0.07); --borde2: rgba(255,255,255,0.12);
+  --blanco: #FFFFFF; --texto: #8E9BAD; --texto-suave: rgba(142,155,173,0.5);
+  --acento: #4DFFA0; --grad: linear-gradient(135deg, #4DFFA0 0%, #4D9FFF 50%, #FF6B8A 100%);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--fondo); color: var(--texto); -webkit-font-smoothing: antialiased; }
+
+.glow-wrap { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.08; }
+.glow-1 { width: 500px; height: 500px; background: #4DFFA0; top: -100px; left: -100px; }
+.glow-2 { width: 400px; height: 400px; background: #FF6B8A; top: 30%; right: -100px; }
+.glow-3 { width: 350px; height: 350px; background: #4D9FFF; bottom: 10%; left: 30%; }
+
+.page { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 60px 40px 100px; }
+
+.header { margin-bottom: 64px; padding-bottom: 40px; border-bottom: 1px solid var(--borde2); }
+.header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 28px; }
+.header-name { font-family: 'Outfit', sans-serif; font-size: 48px; font-weight: 800; color: var(--blanco); letter-spacing: -2px; line-height: 1; }
+.header-name span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header-role { font-size: 15px; color: var(--texto); margin-top: 8px; }
+.header-contact { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; font-size: 13px; color: var(--texto-suave); }
+.header-contact a { color: var(--acento); text-decoration: none; }
+.header-bio { font-size: 15px; color: var(--texto); line-height: 1.8; max-width: 640px; margin-bottom: 28px; }
+.header-bio strong { color: var(--blanco); font-weight: 500; }
+
+.metrics-row { display: flex; gap: 0; }
+.metric { flex: 1; padding: 16px 20px; background: var(--card); border: 1px solid var(--borde); }
+.metric:first-child { border-radius: 10px 0 0 10px; }
+.metric:last-child { border-radius: 0 10px 10px 0; }
+.metric + .metric { border-left: none; }
+.metric-val { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; color: var(--blanco); line-height: 1; margin-bottom: 4px; }
+.metric-val.g { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.metric-label { font-size: 11px; color: var(--texto-suave); line-height: 1.4; }
+
+.sec-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--acento); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--borde); }
+.sec { margin-bottom: 64px; }
+
+/* CASO DESTACADO */
+.caso { background: var(--card); border: 1px solid var(--borde); border-radius: 16px; overflow: hidden; margin-bottom: 32px; }
+.caso-header { padding: 24px 28px 20px; border-bottom: 1px solid var(--borde); display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.caso-empresa { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; color: var(--blanco); margin-bottom: 4px; }
+.caso-nicho { font-size: 13px; color: var(--texto-suave); }
+.canal-tag { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 5px 12px; border-radius: 50px; border: 1px solid; white-space: nowrap; flex-shrink: 0; }
+.canal-tag.meta { color: #5B9FE8; border-color: rgba(91,159,232,0.3); background: rgba(91,159,232,0.06); }
+.canal-tag.google { color: #E87B78; border-color: rgba(232,123,120,0.3); background: rgba(232,123,120,0.06); }
+.canal-tag.mix { color: var(--acento); border-color: rgba(77,255,160,0.3); background: rgba(77,255,160,0.06); }
+
+/* MÉTRICAS DESTACADAS */
+.caso-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-bottom: 1px solid var(--borde); }
+.caso-metric { padding: 20px 24px; border-right: 1px solid var(--borde); }
+.caso-metric:last-child { border-right: none; }
+.caso-metric-val { font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 800; color: var(--blanco); line-height: 1; margin-bottom: 5px; }
+.caso-metric-val.hl { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.caso-metric-label { font-size: 11px; color: var(--texto-suave); line-height: 1.4; }
+
+/* CONTEXTO */
+.caso-contexto { padding: 20px 28px; border-bottom: 1px solid var(--borde); background: rgba(255,255,255,0.02); }
+.caso-contexto-title { font-size: 12px; font-weight: 600; color: var(--blanco); margin-bottom: 8px; }
+.caso-contexto-text { font-size: 13px; color: var(--texto); line-height: 1.75; }
+.caso-contexto-text strong { color: var(--acento); font-weight: 500; }
+
+/* EVIDENCIA */
+.caso-evidencia { padding: 24px 28px; }
+.evidencia-title { font-size: 12px; font-weight: 600; color: var(--blanco); margin-bottom: 16px; letter-spacing: 0.5px; }
+.evidencia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.evidencia-img { border-radius: 10px; overflow: hidden; border: 1px solid var(--borde2); }
+.evidencia-img img { width: 100%; display: block; transition: transform 0.3s; cursor: zoom-in; }
+.evidencia-img img:hover { transform: scale(1.02); }
+.evidencia-img-label { padding: 8px 12px; font-size: 11px; color: var(--texto-suave); background: var(--card2); border-top: 1px solid var(--borde); }
+
+.caso-nota { padding: 14px 28px; border-top: 1px solid var(--borde); font-size: 12px; color: var(--texto-suave); font-style: italic; line-height: 1.6; background: rgba(255,255,255,0.01); }
+
+/* LIGHTBOX */
+.lightbox-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.92); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; padding: 24px;
+  cursor: zoom-out;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img {
+  max-width: 92vw; max-height: 88vh;
+  border-radius: 10px; border: 1px solid var(--borde2);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  cursor: default;
+}
+.lightbox-close {
+  position: fixed; top: 20px; right: 24px;
+  font-size: 20px; color: var(--texto); cursor: pointer;
+  background: var(--card2); border: 1px solid var(--borde2);
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.2s; line-height: 1;
+}
+.lightbox-close:hover { color: var(--blanco); }
+.evidencia-img { position: relative; cursor: zoom-in; }
+.evidencia-img::after {
+  content: 'Ver imagen completa';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.7); color: var(--acento);
+  font-size: 11px; text-align: center; padding: 6px;
+  opacity: 0; transition: opacity 0.2s;
+  pointer-events: none;
+}
+.evidencia-img:hover::after { opacity: 1; }
+
+/* SLOT VACÍO */
+.img-slot { background: var(--card2); border: 1px dashed var(--borde2); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center; min-height: 140px; }
+.img-slot-icon { font-size: 24px; margin-bottom: 8px; opacity: 0.4; }
+.img-slot-txt { font-size: 12px; color: var(--texto-suave); line-height: 1.5; }
+.img-slot-hint { font-size: 11px; color: var(--acento); margin-top: 6px; opacity: 0.7; }
+
+/* OTROS CASOS */
+.casos-otros { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.caso-mini { background: var(--card); border: 1px solid var(--borde); border-radius: 14px; overflow: hidden; transition: border-color 0.2s; }
+.caso-mini:hover { border-color: rgba(77,255,160,0.2); }
+.caso-mini-head { padding: 16px 20px 12px; border-bottom: 1px solid var(--borde); display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.caso-mini-empresa { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; color: var(--blanco); margin-bottom: 2px; }
+.caso-mini-desc { font-size: 11px; color: var(--texto-suave); }
+.caso-mini-nums { padding: 16px 20px; display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.caso-mini-val { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--blanco); line-height: 1; margin-bottom: 3px; }
+.caso-mini-val.hl { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.caso-mini-label { font-size: 10px; color: var(--texto-suave); line-height: 1.4; }
+.caso-mini-nota { padding: 8px 20px 14px; font-size: 11px; color: var(--texto-suave); font-style: italic; line-height: 1.5; border-top: 1px solid var(--borde); }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.skill-block { background: var(--card); border: 1px solid var(--borde); border-radius: 12px; padding: 20px 22px; }
+.skill-block-title { font-size: 13px; font-weight: 600; color: var(--blanco); margin-bottom: 10px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag { font-size: 11px; color: var(--texto); background: rgba(255,255,255,0.04); border: 1px solid var(--borde2); padding: 4px 10px; border-radius: 50px; }
+
+.footer { border-top: 1px solid var(--borde); padding-top: 28px; margin-top: 64px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--texto-suave); }
+.footer a { color: var(--acento); text-decoration: none; }
+
+@media (max-width: 720px) {
+  .page { padding: 40px 20px 80px; }
+  .header-top { flex-direction: column; }
+  .header-contact { align-items: flex-start; }
+  .metrics-row { flex-wrap: wrap; }
+  .metric { flex: 1 1 45%; }
+  .metric:first-child { border-radius: 10px 0 0 0; }
+  .caso-metrics { grid-template-columns: 1fr 1fr; }
+  .caso-metric { border-bottom: 1px solid var(--borde); }
+  .evidencia-grid { grid-template-columns: 1fr; }
+  .casos-otros { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="glow-wrap">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-name">Ernesto <span>Vargas</span></div>
+        <div class="header-role">Performance Marketing Specialist · Meta Ads & Google Ads · 12+ años</div>
+      </div>
+      <div class="header-contact">
+        <span>Barranquilla, Colombia</span>
+        <span>3207328453</span>
+        <a href="mailto:ernestofvs90@gmail.com">ernestofvs90@gmail.com</a>
+        <a href="https://linkedin.com/in/ernestofvs" target="_blank">linkedin.com/in/ernestofvs</a>
+      </div>
+    </div>
+    <p class="header-bio">
+      Especialista en performance marketing con más de 12 años gestionando campañas en Meta Ads y Google Ads para ecommerce, servicios y eventos en Colombia, Venezuela, México, España y Estados Unidos. <strong>He manejado más de USD $500.000 en inversión publicitaria acumulada</strong>, con presupuestos de hasta USD $30.000 mensuales, conectando pauta con resultados de negocio medibles.
+    </p>
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-val g">+12 años</div><div class="metric-label">en Marketing Digital</div></div>
+      <div class="metric"><div class="metric-val">+USD $500K</div><div class="metric-label">inversión gestionada</div></div>
+      <div class="metric"><div class="metric-val">USD $30K</div><div class="metric-label">máx. presupuesto mensual</div></div>
+      <div class="metric"><div class="metric-val g">~33x</div><div class="metric-label">mejor relación inversión/ventas</div></div>
+      <div class="metric"><div class="metric-val">USD $2</div><div class="metric-label">costo por conv. calificada</div></div>
+    </div>
+  </div>
+
+  <!-- ECOMMERCE -->
+  <div class="sec">
+    <div class="sec-label">Ecommerce — Casos destacados</div>
+
+    <!-- TUSIM -->
+    <div class="caso">
+      <div class="caso-header">
+        <div>
+          <div class="caso-empresa">TuSim Travel</div>
+          <div class="caso-nicho">eSIM cards para viajeros · Ecommerce · Shopify · Mayo–Julio 2024</div>
+        </div>
+        <span class="canal-tag meta">Meta Ads</span>
+      </div>
+
+      <div class="caso-metrics">
+        <div class="caso-metric">
+          <div class="caso-metric-val hl">171.4%</div>
+          <div class="caso-metric-label">Crecimiento en ventas<br>mayo → julio</div>
+        </div>
+        <div class="caso-metric">
+          <div class="caso-metric-val hl">12x</div>
+          <div class="caso-metric-label">ROAS más alto<br>julio 2024</div>
+        </div>
+        <div class="caso-metric">
+          <div class="caso-metric-val">$3.225.000</div>
+          <div class="caso-metric-label">Inversión total COP<br>3 meses</div>
+        </div>
+        <div class="caso-metric">
+          <div class="caso-metric-val">55</div>
+          <div class="caso-metric-label">Compras totales<br>atribuidas</div>
+        </div>
+      </div>
+
+      <div class="caso-contexto">
+        <div class="caso-contexto-title">Estrategia implementada</div>
+        <div class="caso-contexto-text">
+          Embudo completo en Meta Ads con <strong>3 campañas de reconocimiento + 1 de conversión</strong>. La campaña de conversión funcionó como remarketing dividido en dos formatos de creativos: carrusel e imagen tipo flyer. Las campañas de reconocimiento generaron tráfico al sitio web con segmentación por intereses, fortalecida con <strong>creativos estilo UGC y videos de creadores reconocidos</strong> — lo que permitió generar ventas en frío desde awareness. El negocio casi triplicó su facturación mensual en solo dos meses.
+        </div>
+      </div>
+
+      <div class="caso-evidencia">
+        <div class="evidencia-title">Evidencia documentada</div>
+        <div class="evidencia-grid">
+          <div class="evidencia-img">
+            <img src="https://i.imgur.com/1DmppeQ.png" alt="Dashboard Shopify TuSim Travel - crecimiento de ventas mayo a julio 2024">
+            <div class="evidencia-img-label">Dashboard Shopify · Crecimiento de ventas mayo–julio 2024</div>
+          </div>
+          <div class="evidencia-img">
+            <img src="https://i.imgur.com/Ayv4LW4.png" alt="Resultados campañas Meta Ads TuSim - ROAS y compras">
+            <div class="evidencia-img-label">Meta Ads Manager · Resultados de 4 campañas · ROAS y compras</div>
+          </div>
+          <div class="evidencia-img">
+            <img src="https://i.imgur.com/dbhnvTi.png" alt="Grupos de anuncios campaña de ventas TuSim">
+            <div class="evidencia-img-label">Grupos de anuncios · Campaña de ventas · Carrusel vs imagen</div>
+          </div>
+          <div class="evidencia-img">
+            <img src="https://i.imgur.com/xU0iG0R.png" alt="Grupos de anuncios campaña reconocimiento TuSim">
+            <div class="evidencia-img-label">Grupos de anuncios · Campaña reconocimiento · Segmentación e influencers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caso-nota">Periodo: mayo–julio 2024 · Plataforma: Shopify · Las ventas crecieron 171.4% en dos meses — el negocio multiplicó su facturación por 2.7x. ROAS promedio del embudo completo: 3.44x · ROAS pico julio: 12x.</div>
+    </div>
+
+    <!-- DAMISELA -->
+    <div class="caso">
+      <div class="caso-header">
+        <div>
+          <div class="caso-empresa">Damisela Lingerie</div>
+          <div class="caso-nicho">Lencería · Ecommerce DTC · Enero 2025</div>
+        </div>
+        <span class="canal-tag meta">Meta Ads</span>
+      </div>
+      <div class="caso-metrics">
+        <div class="caso-metric">
+          <div class="caso-metric-val hl">5.09x</div>
+          <div class="caso-metric-label">ROAS promedio<br>enero 2025</div>
+        </div>
+        <div class="caso-metric">
+          <div class="caso-metric-val hl">5.90x</div>
+          <div class="caso-metric-label">ROAS mejor conjunto<br>base de datos + lookalike</div>
+        </div>
+        <div class="caso-metric">
+          <div class="caso-metric-val">$1.687.871</div>
+          <div class="caso-metric-label">Inversión COP</div>
+        </div>
+        <div class="caso-metric">
+          <div class="caso-metric-val hl">$8.201.100</div>
+          <div class="caso-metric-label">Ventas COP · 62 compras</div>
+        </div>
+      </div>
+      <div class="caso-contexto">
+        <div class="caso-contexto-title">Estrategia implementada</div>
+        <div class="caso-contexto-text">
+          Embudo con campaña principal de ventas por video + campaña de tráfico complementaria. La audiencia ganadora fue <strong>base de datos de clientes + público similar (lookalike 1%)</strong>, que generó 46 de las 62 compras totales con ROAS de 5.90x. La campaña de tráfico aportó <strong>1.955 clics a $29 COP</strong> — alimentando el pixel y mejorando el ROAS de la campaña de conversión. <strong>La estructura base sigue activa más de un año después</strong>, gestionada por la misma cliente.
+        </div>
+      </div>
+      <div class="caso-evidencia">
+        <div class="evidencia-title">Evidencia documentada</div>
+        <div class="evidencia-grid">
+          <div class="evidencia-img">
+            <img src="http://asesoriadigitalpro.com/wp-content/uploads/2026/09/Captura-de-pantalla-2026-09-14-213115.png" alt="Meta Ads Manager Damisela Lingerie - resultados enero 2025 - ROAS 4.86x y 62 compras">
+            <div class="evidencia-img-label">Meta Ads Manager · Enero 2025 · 62 compras · ROAS 4.86x · $8.2M COP en ventas</div>
+          </div>
+          <div class="evidencia-img">
+            <img src="http://asesoriadigitalpro.com/wp-content/uploads/2026/09/Captura-de-pantalla-2026-09-14-213519.png" alt="Grupos de anuncios Damisela - audiencia base de datos y lookalike con ROAS 5.90x">
+            <div class="evidencia-img-label">Desglose por audiencias · Base de datos + lookalike: ROAS 5.90x · Advantage+: ROAS 6.01x</div>
+          </div>
+        </div>
+      </div>
+      <div class="caso-nota">Enero 2025 · Ecommerce DTC de lencería colombiana. La audiencia de base de datos propia + lookalike fue la clave del rendimiento. La campaña que construimos sigue activa más de un año después — señal de que la estructura funciona.</div>
+    </div>
+
+    <!-- URPE -->
+    <div class="caso">
+      <div class="caso-header">
+        <div>
+          <div class="caso-empresa">URPE Integral Services</div>
+          <div class="caso-nicho">Visa EB-2 para migrantes latinos · Mercado EE.UU. · Feb 2025 – May 2026</div>
+        </div>
+        <span class="canal-tag meta">Meta Ads</span>
+      </div>
+      <div class="caso-metrics">
+        <div class="caso-metric">
+          <div class="caso-metric-val hl">USD $3</div>
+          <div class="caso-metric-label">CPL mínimo documentado<br>leads formulario</div>
+        </div>
+        <div class="caso-metric">
+          <div class="caso-metric-val hl">2.500</div>
+          <div class="caso-metric-label">Conversaciones WhatsApp<br>mejor mes</div>
+        </div>
+        <div class="caso-metric">
+          <div class="caso-metric-val">USD $30K</div>
+          <div class="caso-metric-label">Inversión mensual<br>en mejor periodo</div>
+        </div>
+        <div class="caso-metric">
+          <div class="caso-metric-val">USD $7K</div>
+          <div class="caso-metric-label">Ticket promedio<br>del servicio</div>
+        </div>
+      </div>
+      <div class="caso-contexto">
+        <div class="caso-contexto-title">Estrategia implementada</div>
+        <div class="caso-contexto-text">
+          Campañas Meta Ads en inglés y español dirigidas a <strong>migrantes latinos en Estados Unidos</strong> interesados en el proceso de visa EB-2. Dos frentes simultáneos: <strong>campañas de mensajes WhatsApp</strong> para conversación directa con el equipo comercial, y <strong>campañas de leads con formulario nativo</strong> de Meta con preguntas filtro para calificar prospectos. Con un ticket de servicio de USD $7.000, el CPL desde USD $3 representaba un CAC extremadamente eficiente. Inversiones de hasta USD $30.000 mensuales gestionadas durante 15 meses consecutivos.
+        </div>
+      </div>
+      <div class="caso-evidencia">
+        <div class="evidencia-title">Evidencia documentada</div>
+        <div class="evidencia-grid">
+          <div class="evidencia-img">
+            <img src="http://asesoriadigitalpro.com/wp-content/uploads/2026/09/urpe-8.png" alt="URPE - conjuntos de anuncios leads EB2 USA - CPL desde USD $2.99">
+            <div class="evidencia-img-label">Conjuntos de anuncios · Leads EB-2 USA · CPL desde USD $2.99 · 295 leads en mejor conjunto</div>
+          </div>
+          <div class="evidencia-img">
+            <img src="http://asesoriadigitalpro.com/wp-content/uploads/2026/09/urpe-555-2.png" alt="URPE - anuncios activos conversaciones WhatsApp EB2 - CPL desde $3.36">
+            <div class="evidencia-img-label">Anuncios activos · Conversaciones WhatsApp · CPL desde USD $3.36</div>
+          </div>
+          <div class="evidencia-img">
+            <img src="http://asesoriadigitalpro.com/wp-content/uploads/2026/09/urpe-55.png" alt="URPE - campañas Ventas WhatsApp EB2 activas">
+            <div class="evidencia-img-label">Campañas activas · Ventas WhatsApp EB-2 · Mercado latino EE.UU.</div>
+          </div>
+          <div class="evidencia-img">
+            <img src="http://asesoriadigitalpro.com/wp-content/uploads/2026/09/urpe-1.png" alt="URPE - conjuntos de anuncios leads por estado USA - TX, GA, Online">
+            <div class="evidencia-img-label">Segmentación por estado · TX · GA · Online · Leads clientes potenciales EE.UU.</div>
+          </div>
+        </div>
+      </div>
+      <div class="caso-nota">Feb 2025 – May 2026 · 15 meses de gestión continua · Mercado: hispanohablantes en EE.UU. · Con un ticket de USD $7.000 por cliente, un CPL de USD $3 representaba un retorno potencial excepcional para el negocio.</div>
+    </div>
+
+  </div>
+
+  <!-- OTROS CASOS -->
+  <div class="sec">
+    <div class="sec-label">Otros casos documentados</div>
+    <div class="casos-otros">
+
+      <div class="caso-mini">
+        <div class="caso-mini-head">
+          <div><div class="caso-mini-empresa">Pladani – Grupo Roho</div><div class="caso-mini-desc">Retail iPhones a crédito · Meta Ads</div></div>
+          <span class="canal-tag meta">Meta Ads</span>
+        </div>
+        <div class="caso-mini-nums">
+          <div><div class="caso-mini-val">$30M</div><div class="caso-mini-label">Inversión COP/mes</div></div>
+          <div><div class="caso-mini-val hl">33x</div><div class="caso-mini-label">Relación inv./ventas</div></div>
+          <div><div class="caso-mini-val">$1.000M</div><div class="caso-mini-label">Ventas brutas COP</div></div>
+        </div>
+        <div class="caso-mini-nota">Ventas brutas — margen no era variable de gestión. Leads vía WhatsApp con cierre por asesor comercial.</div>
+      </div>
+
+      <div class="caso-mini">
+        <div class="caso-mini-head">
+          <div><div class="caso-mini-empresa">URPE Integral Services</div><div class="caso-mini-desc">Visa EB-2 · Mercado latino EE.UU.</div></div>
+          <span class="canal-tag meta">Meta Ads</span>
+        </div>
+        <div class="caso-mini-nums">
+          <div><div class="caso-mini-val">USD $30K</div><div class="caso-mini-label">Inversión/mes</div></div>
+          <div><div class="caso-mini-val hl">USD $2</div><div class="caso-mini-label">CPL mínimo</div></div>
+          <div><div class="caso-mini-val">2.500</div><div class="caso-mini-label">Conversaciones/mes</div></div>
+        </div>
+        <div class="caso-mini-nota">CPL desde USD $2 sostenido 3 meses consecutivos. Ticket del servicio: USD $7.000.</div>
+      </div>
+
+      <div class="caso-mini">
+        <div class="caso-mini-head">
+          <div><div class="caso-mini-empresa">Perrenque Creativo</div><div class="caso-mini-desc">Evento cultural · Barranquilla · 2025 & 2026</div></div>
+          <span class="canal-tag mix">Meta + TikTok</span>
+        </div>
+        <div class="caso-mini-nums">
+          <div><div class="caso-mini-val">$10M</div><div class="caso-mini-label">Inversión COP</div></div>
+          <div><div class="caso-mini-val hl">$19.4M</div><div class="caso-mini-label">Tickets premium</div></div>
+          <div><div class="caso-mini-val">2.500</div><div class="caso-mini-label">Inscritos gratuitos</div></div>
+        </div>
+        <div class="caso-mini-nota">Responsable del performance en ambas ediciones. ~2x retorno en tickets premium.</div>
+      </div>
+
+      <div class="caso-mini">
+        <div class="caso-mini-head">
+          <div><div class="caso-mini-empresa">Unisa Inmobiliaria</div><div class="caso-mini-desc">Captación propietarios · Google Ads</div></div>
+          <span class="canal-tag google">Google Ads</span>
+        </div>
+        <div class="caso-mini-nums">
+          <div><div class="caso-mini-val">$500K</div><div class="caso-mini-label">Inversión COP</div></div>
+          <div><div class="caso-mini-val hl">320</div><div class="caso-mini-label">Leads totales</div></div>
+          <div><div class="caso-mini-val">6.447</div><div class="caso-mini-label">Clics</div></div>
+        </div>
+        <div class="caso-mini-nota">Performance Max. 160 arriendo + 115 venta + 45 WhatsApp. Con $500.000 COP.</div>
+      </div>
+
+      <div class="caso-mini">
+        <div class="caso-mini-head">
+          <div><div class="caso-mini-empresa">Santo Domingo Legal Solutions</div><div class="caso-mini-desc">Negociación de deudas · Meta Ads</div></div>
+          <span class="canal-tag meta">Meta Ads</span>
+        </div>
+        <div class="caso-mini-nums">
+          <div><div class="caso-mini-val">~$5M</div><div class="caso-mini-label">Inversión COP/mes</div></div>
+          <div><div class="caso-mini-val hl">~2.000</div><div class="caso-mini-label">Conversaciones/mes</div></div>
+          <div><div class="caso-mini-val">$1.578</div><div class="caso-mini-label">CPL promedio COP</div></div>
+        </div>
+        <div class="caso-mini-nota">CPL desde $1.214 COP. WhatsApp + leads con formulario filtro. Ticket: $50M–$100M COP.</div>
+      </div>
+
+      <div class="caso-mini">
+        <div class="caso-mini-head">
+          <div><div class="caso-mini-empresa">La Lavandería & Bakery</div><div class="caso-mini-desc">Negocio local · 3 sedes · Barranquilla</div></div>
+          <span class="canal-tag mix">Meta + Google</span>
+        </div>
+        <div class="caso-mini-nums">
+          <div><div class="caso-mini-val">$700K</div><div class="caso-mini-label">Inversión COP/mes</div></div>
+          <div><div class="caso-mini-val hl">451</div><div class="caso-mini-label">Conversiones agosto</div></div>
+          <div><div class="caso-mini-val">$1.700</div><div class="caso-mini-label">CPL Google COP</div></div>
+        </div>
+        <div class="caso-mini-nota">67% impresión posición superior en Barranquilla. Clientes reportan incremento directo en ventas.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMPETENCIAS -->
+  <div class="sec">
+    <div class="sec-label">Competencias</div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-block-title">Paid Media</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Meta Ads</span><span class="skill-tag">Google Ads</span>
+          <span class="skill-tag">TikTok Ads</span><span class="skill-tag">Lead Generation</span>
+          <span class="skill-tag">Ecommerce</span><span class="skill-tag">Funnel Strategy</span>
+          <span class="skill-tag">Budget Optimization</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Analítica & Medición</div>
+        <div class="skill-tags">
+          <span class="skill-tag">GA4</span><span class="skill-tag">Google Tag Manager</span>
+          <span class="skill-tag">Meta Conversion API</span><span class="skill-tag">Looker Studio</span>
+          <span class="skill-tag">Conversion Tracking</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Web & Conversión</div>
+        <div class="skill-tags">
+          <span class="skill-tag">WordPress</span><span class="skill-tag">Elementor</span>
+          <span class="skill-tag">Landing Pages</span><span class="skill-tag">CRO</span>
+          <span class="skill-tag">SEO On-Page</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-title">Estrategia</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Performance Marketing</span>
+          <span class="skill-tag">Customer Acquisition</span>
+          <span class="skill-tag">Campaign Planning</span>
+          <span class="skill-tag">Dirección creativa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Ernesto Vargas · Performance Marketing Specialist</span>
+    <span><a href="https://wa.me/573207328453">3207328453</a> · <a href="mailto:ernestofvs90@gmail.com">ernestofvs90@gmail.com</a></span>
+  </div>
+
+</div>
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">✕</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+
+document.querySelectorAll('.evidencia-img img').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', function(e) {
+    e.stopPropagation();
+    lightboxImg.src = this.src;
+    lightboxImg.alt = this.alt;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+lightbox.addEventListener('click', closeLightbox);
+lightboxClose.addEventListener('click', function(e) {
+  e.stopPropagation();
+  closeLightbox();
+});
+lightboxImg.addEventListener('click', function(e) { e.stopPropagation(); });
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
